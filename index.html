@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vy Nguyen · FP&A Manager</title>
+<meta name="description" content="Vy Nguyen, FP&A professional. Financial planning, forecasting, business partnering and Power BI reporting.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F2E8DB;
+    --surface: #ffffff;
+    --side: #F2E8DB;
+    --side-text: #2b2118;
+    --side-hover: #e4d6c0;
+    --text: #2b2118;
+    --muted: #6b5d4f;
+    --accent: #5a4632;
+    --accent-soft: #ebe0cf;
+    --border: #dccfbb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1c1812;
+      --surface: #252018;
+      --side: #2e271d;
+      --side-text: #f2e8db;
+      --side-hover: #3d3426;
+      --text: #f2e8db;
+      --muted: #b5a894;
+      --accent: #d8b98f;
+      --accent-soft: #33291d;
+      --border: #3a3126;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  [hidden] { display: none !important; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1 { font-size: 40px; margin: 0 0 6px; letter-spacing: -0.5px; line-height: 1.15; }
+  h2 { font-size: 22px; margin: 0 0 20px; letter-spacing: -0.3px; }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+
+  /* Layout: sidebar + content (Gul Varol style) */
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+  }
+  .sidebar {
+    background: var(--side);
+    color: var(--side-text);
+    padding: 56px 28px 40px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .photo { margin: 0 auto 20px; width: 200px; }
+  .photo img, .avatar {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid rgba(255, 255, 255, 0.35);
+  }
+  .avatar {
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+    font-size: 56px;
+    font-weight: 700;
+  }
+  .sidebar h1 { font-size: 26px; margin-bottom: 4px; }
+  .side-role { margin: 0 0 24px; font-weight: 600; opacity: 0.85; }
+  .side-nav { display: flex; flex-direction: column; gap: 4px; }
+  .side-nav a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--side-text);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 14px;
+  }
+  .side-nav a { display: flex; align-items: center; justify-content: flex-start; gap: 10px; }
+  .side-nav svg { flex: 0 0 18px; width: 18px; height: 18px; fill: currentColor; }
+  .side-nav a:hover { background: var(--side-hover); text-decoration: none; }
+  .side-nav a.active {
+    background: var(--side-hover);
+    box-shadow: inset 4px 0 0 var(--accent);
+  }
+
+  .content { padding: 56px 56px 0; min-width: 0; }
+  .content > section { padding-bottom: 44px; margin-bottom: 44px; border-bottom: 1px solid var(--border); }
+  .content > section:last-of-type { border-bottom: none; }
+  .intro { font-size: 17px; color: var(--muted); max-width: none; margin: 0 0 12px; text-align: justify; }
+  .langs { margin: 0 0 24px; color: var(--muted); font-size: 15px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn:hover { text-decoration: none; opacity: 0.9; }
+
+  .job {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .job-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 16px;
+    margin-bottom: 8px;
+  }
+  .job h3 { font-size: 17px; margin: 0; }
+  .job .co { color: var(--accent); font-weight: 600; }
+  .when { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 10px; }
+  .role { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .job-head + .role { margin-top: 4px; padding-top: 0; border-top: none; }
+  .role-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2px 16px;
+    margin-bottom: 4px;
+  }
+  .role-head h4 { font-size: 16px; margin: 0; }
+  .role-head .when { white-space: normal; }
+  .role .sub { margin-bottom: 8px; }
+  .job-group > .job-head h3 { font-size: 18px; color: var(--accent); }
+  .job-group > .job-head h3 .co { color: var(--accent); font-weight: 500; font-size: 15px; }
+  .job-group > .job-head .when { font-size: 15px; font-weight: 600; color: var(--text); }
+  .role-head h4 { font-size: 15px; font-weight: 600; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .card h3 { font-size: 16px; margin: 0 0 6px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .tag {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .card-actions { margin-top: 14px; }
+  .btn-view {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+  }
+  a.btn-view { display: inline-block; text-decoration: none; }
+  .btn-view:hover { opacity: 0.9; text-decoration: none; }
+  .link-btn {
+    font: inherit;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 0;
+  }
+  .viewer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .viewer-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .viewer iframe { display: block; width: 100%; height: 620px; border: 0; }
+  .viewer-note { padding: 40px 20px; margin: 0; text-align: center; color: var(--muted); }
+  .projects-more { margin: 16px 0 0; }
+  .projects-list { display: flex; flex-direction: column; gap: 24px; }
+  .project {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .project-cover {
+    flex: 0 0 200px;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--accent-soft);
+  }
+  .project-cover img {
+    display: block;
+    width: 100%;
+    height: 112px;
+    object-fit: cover;
+    object-position: top;
+  }
+  .project-cover:hover { opacity: 0.9; }
+  .project-body { flex: 1; min-width: 0; padding: 2px 4px; }
+  .project-body h3 { font-size: 18px; margin: 0 0 6px; }
+  .project-body p { margin: 0; color: var(--muted); font-size: 15px; }
+  .project-body .tags { margin-top: 10px; }
+  .gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 12px auto 0;
+    max-width: 100%;
+    justify-content: center;
+  }
+  .gallery a { flex: 1 1 0; min-width: 0; display: block; }
+  .gallery img {
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  #outside .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 1100px) { #outside .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { #outside .grid { grid-template-columns: 1fr; } }
+  #outside .card { display: flex; flex-direction: column; }
+  #outside .card p { min-height: 4.8em; margin: 0; }
+  #outside .gallery { margin: auto auto 0; padding-top: 12px; }
+  .aodai { margin: 24px 0 0; max-width: 360px; }
+  .aodai img { display: block; width: 100%; height: auto; border-radius: 12px; }
+  .aodai figcaption { margin-top: 8px; color: var(--muted); font-size: 14px; }
+
+  footer { padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: static;
+      height: auto;
+      padding: 40px 20px 28px;
+    }
+    .photo, .photo img, .avatar { width: 160px; height: 160px; }
+    .side-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .content { padding: 40px 20px 0; }
+  }
+  @media (max-width: 560px) {
+    h1 { font-size: 32px; }
+    .viewer iframe { height: 460px; }
+    .when { white-space: normal; }
+    .project { flex-direction: column; }
+    .project-cover { flex-basis: auto; width: 100%; }
+    .project-cover img { height: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="photo">
+      <img src="assets/photo.jpg" alt="Vy Nguyen" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+      <div class="avatar" hidden>VN</div>
+    </div>
+    <h1>Vy Nguyen</h1>
+    <p class="side-role">FP&amp;A Manager</p>
+    <nav class="side-nav">
+      <a href="#about"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></svg>About</a>
+      <a href="#experience"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v4h5v13H4V7h5zm2 0v2h2V3zM4 12h16v2H4z"/></svg>Experience</a>
+      <a href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10h4v10zm6 0V4h4v16zm6 0v-7h4v7z"/></svg>Projects</a>
+      <a href="#education"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.9V17h2V9zM5 13v4c0 1.7 3.1 3 7 3s7-1.3 7-3v-4l-7 3.8z"/></svg>Education</a>
+      <a href="#skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6L18.2 22 12 18.3 5.8 22l1.5-7.8L2 9.6 9 9z"/></svg>Skills</a>
+      <a href="#outside"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-15 5-15 12v4h4c7 0 11-6 11-16z"/></svg>Outside of Work</a>
+      <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zm2 2v.5l7 5 7-5V7z"/></svg>Contact</a>
+    </nav>
+  </aside>
+
+  <div class="content">
+
+    <section id="about">
+      <p class="intro">
+        Financial planning and analysis professional with 5+ years of experience in fast-paced international organizations. Experienced in partnering with business and executive leaders on strategic planning, forecasting and resource allocation. Skilled in translating complex financial data into actionable insights using financial modeling, Power BI, Python and AI-enabled tools.
+      </p>      <div class="btns">
+        <a class="btn primary" href="assets/VyNguyen_CV.pdf" target="_blank" rel="noopener">CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/phucbaovynguyen/">LinkedIn</a>
+        <a class="btn" href="https://mavenshowcase.com/profile/b8811380-f0d1-7061-1dd4-ac98bb890f2a">Power BI Showcase</a>
+        <a class="btn" href="mailto:vy.nguyenphucbao@gmail.com">Email</a>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <article class="job job-group">
+        <div class="job-head">
+          <h3>AspenTech - an Emerson company <span class="co">· Greater Boston, MA</span></h3>
+          <span class="when">Dec 2025 – Present · <span class="dur" data-start="2025-12" data-end="present">11 mos</span></span>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <h4>FP&amp;A Manager</h4>
+          </div>
+        <ul>
+          <li>Partner directly with executives across Finance, Marketing, HR, Legal and Facilities on financial decisions and resource allocation.</li>
+          <li>Own company-wide headcount and compensation expense forecasting for a global workforce of 3,500+ employees, including salaries, benefits, payroll taxes and commissions.</li>
+          <li>Manage annual budgeting, quarterly planning and weekly forecast updates across Compensation and Non-Compensation OPEX, and production of presentation material for executive reviews.</li>
+          <li>Build financial models for strategic planning and long-range forecasts, turning business assumptions into projections.</li>
+          <li>Leverage Workday Adaptive Planning, Power BI, and Copilot to enhance reporting efficiency, improve data visibility, and streamline FP&amp;A analyses and processes.</li>
+        </ul>
+        </div>
+      </article>
+
+      <article class="job job-group">
+        <div class="job-head">
+          <h3>ATR - Airbus Group <span class="co">· Toulouse, France</span></h3>
+          <span class="when">Mar 2021 – Sep 2025 · <span class="dur" data-start="2021-03" data-end="2025-09">4 yrs 7 mos</span></span>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <h4>Financial Controller</h4>
+            <span class="when">Feb 2023 – Sep 2025 · <span class="dur" data-start="2023-02" data-end="2025-09">2 yrs 8 mos</span></span>
+          </div>
+          <p class="sub">Services &amp; Support department</p>
+          <ul>
+            <li>Served as Services &amp; Support Controlling Team Lead in France, coordinating cross-regional financial actions with subsidiaries in Miami and Singapore.</li>
+            <li>Partnered directly with the Senior VP of Services &amp; Support department (9 business units, ∼$600M revenue, ∼350 employees) and collaborated with cross-functional teams HR, Procurement, Accounting, Treasury to optimize resource allocation and drive the financial performance.</li>
+            <li>Led month-end close cycles, analyzed in-depth actuals revenue, COGS, margin, OPEX, and cash flow variances against budget, forecast, and prior periods, delivering executive-level presentations.</li>
+            <li>Drove business reviews, risk &amp; opportunities tracking, quarterly forecasts, annual operating plan.</li>
+            <li>Developed financial models, business cases, and conducted ad-hoc analyses to recommend actionable strategies for processes efficiency and margin optimization.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <h4>Financial Controller Assistant</h4>
+            <span class="when">Oct 2021 – Feb 2023 · <span class="dur" data-start="2021-10" data-end="2023-02">1 yr 5 mos</span></span>
+          </div>
+          <p class="sub">Engineering department, contracted through Expleo (ATR subcontractor)</p>
+          <ul>
+            <li>Supported several Engineering VPs at ATR on business performance and financial planning.</li>
+            <li>Managed month-end close, including cost accruals, deferred revenues, and WBS and cost-center management.</li>
+            <li>Built and maintained OPEX Power BI dashboards that helped managers make data-driven cost decisions.</li>
+            <li>Managed KPIs and SOPs for cost-savings initiatives during inflation and supply-chain volatility.</li>
+            <li>Worked with the Accounting and SAP teams to improve reporting accuracy and streamline business logic.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <h4>Financial Controller Intern</h4>
+            <span class="when">Mar 2021 – Sep 2021 · <span class="dur" data-start="2021-03" data-end="2021-09">7 mos</span></span>
+          </div>
+          <ul>
+            <li>Analyzed BU technical documentation to drive process improvements and operational excellence.</li>
+            <li>Monitored budgetary control and took part in closings.</li>
+            <li>Improved dashboards and tools with VBA macros.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job job-group">
+        <div class="job-head">
+          <h3>Falinwa <span class="co">· Toulouse, France</span></h3>
+          <span class="when">Apr 2020 – Aug 2020 · <span class="dur" data-start="2020-04" data-end="2020-08">5 mos</span></span>
+        </div>
+
+        <div class="role">
+          <div class="role-head">
+            <h4>Accountant &amp; ERP Functional Consultant Intern</h4>
+          </div>
+          <ul>
+            <li>Worked with IT on Odoo ERP solutions for clients and tested them for financial accuracy.</li>
+            <li>Helped clients configure newly developed functions and wrote website content descriptions.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2>Power BI Portfolio</h2>
+      <div class="projects-list">
+        <article class="project">
+          <a class="project-cover" href="https://app.powerbi.com/view?r=eyJrIjoiYmI4ZTkwYzYtYmJiOC00ZjZmLTk3MTMtYmI5NmVjODQyZTAwIiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">
+            <img src="assets/projects/fintech-cover.jpg" alt="Fintech Project Insights dashboard preview" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3>Fintech Project Insights</h3>
+            <p>Budget vs. actuals tracking with YTD theoretical costs, burn-rate status (on track, overburn, hyperburn), and forecasting, with a documented methodology page.</p>
+            <div class="tags"><span class="tag">Budget vs. actuals</span><span class="tag">Forecasting</span></div>
+            <div class="card-actions"><a class="btn-view" href="https://app.powerbi.com/view?r=eyJrIjoiYmI4ZTkwYzYtYmJiOC00ZjZmLTk3MTMtYmI5NmVjODQyZTAwIiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">Open dashboard</a></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <a class="project-cover" href="https://app.powerbi.com/view?r=eyJrIjoiMzhkYjRkMjItZDg5Yy00MjJmLWJiOWItNTM0YjlmOTdjM2U2IiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">
+            <img src="assets/projects/hr-cover.jpg" alt="HR Dashboard preview" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3>HR Dashboard</h3>
+            <p>Workforce overview (headcount, salary, seniority, senior managers) and a turnover analysis covering age, salary and attrition patterns.</p>
+            <div class="tags"><span class="tag">HR analytics</span><span class="tag">Turnover analysis</span></div>
+            <div class="card-actions"><a class="btn-view" href="https://app.powerbi.com/view?r=eyJrIjoiMzhkYjRkMjItZDg5Yy00MjJmLWJiOWItNTM0YjlmOTdjM2U2IiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">Open dashboard</a></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <a class="project-cover" href="https://app.powerbi.com/view?r=eyJrIjoiMGFkMTVkOTEtZjgwMi00MjExLTk1MjAtMjk5M2YwNmUyMDI1IiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">
+            <img src="assets/projects/coffee-cover.jpg" alt="Coffee Shop Sales Dashboard preview" loading="lazy">
+          </a>
+          <div class="project-body">
+            <h3>Coffee Shop Sales Dashboard</h3>
+            <p>Three-page sales dashboard: overview KPIs, month-over-month sales trends, and shopper behavior with peak-season analysis.</p>
+            <div class="tags"><span class="tag">Sales analysis</span><span class="tag">Dashboard design</span></div>
+            <div class="card-actions"><a class="btn-view" href="https://app.powerbi.com/view?r=eyJrIjoiMGFkMTVkOTEtZjgwMi00MjExLTk1MjAtMjk5M2YwNmUyMDI1IiwidCI6ImNiNDg0NDZlLTkwZTYtNGJmMS04MjViLTQwZTQ4ZmNjOWZmNiJ9" target="_blank" rel="noopener">Open dashboard</a></div>
+          </div>
+        </article>
+      </div>
+
+      <p class="projects-more">
+        See all projects on my <a href="https://mavenshowcase.com/profile/b8811380-f0d1-7061-1dd4-ac98bb890f2a">Maven Analytics showcase</a>.
+      </p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="job">
+        <div class="job-head">
+          <h3>Master in Finance &amp; IT (Fintech) <span class="co">· Toulouse Capitole University</span></h3>
+          <span class="when">2019 – 2021</span>
+        </div>
+        <p class="sub">Corporate Finance, Financial Analysis, Management Control, IT Tools in Finance, IFRS</p>
+      </div>
+      <div class="job">
+        <div class="job-head">
+          <h3>Bachelor's Degree in Accounting <span class="co">· University of Economics, Hue University</span></h3>
+          <span class="when">2015 – 2019</span>
+        </div>
+        <p class="sub">Financial Accounting, Management Accounting, Auditing, Taxation</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Financial planning</h3>
+          <div class="tags">
+            <span class="tag">Budgeting</span><span class="tag">Forecasting</span><span class="tag">Headcount planning</span>
+            <span class="tag">Long-range planning</span><span class="tag">Financial modeling</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Analysis &amp; reporting</h3>
+          <div class="tags">
+            <span class="tag">Variance analysis</span><span class="tag">Month-end close</span>
+            <span class="tag">Executive reporting</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <div class="tags">
+            <span class="tag">Power BI</span><span class="tag">Advanced Excel</span><span class="tag">VBA</span>
+            <span class="tag">Python</span><span class="tag">Copilot</span><span class="tag">Claude</span><span class="tag">PowerPoint</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>ERP &amp; systems</h3>
+          <div class="tags">
+            <span class="tag">Workday Adaptive Planning</span><span class="tag">IBM Planning Analytics</span>
+            <span class="tag">SAP</span><span class="tag">Odoo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="outside">
+      <h2>Outside of Work</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Yoga &amp; meditation</h3>
+          <p>Yoga and meditation keep me grounded, focused and calm.</p>
+          <div class="gallery">
+            <a href="assets/outside/yoga-1.jpg" target="_blank" rel="noopener"><img src="assets/outside/yoga-1.jpg" alt="Yoga mat and blocks by a window" loading="lazy"></a>
+            <a href="assets/outside/yoga-2.jpg" target="_blank" rel="noopener"><img src="assets/outside/yoga-2.jpg" alt="Meditation space" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Cooking &amp; baking</h3>
+          <p>In the kitchen, cooking and baking are my way to release stress.</p>
+          <div class="gallery">
+            <a href="assets/outside/baking-1.jpg" target="_blank" rel="noopener"><img src="assets/outside/baking-1.jpg" alt="Golden puff pastries on a baking tray" loading="lazy"></a>
+            <a href="assets/outside/baking-2.jpg" target="_blank" rel="noopener"><img src="assets/outside/baking-2.jpg" alt="Mango passion fruit tart in a baking tin" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Nature &amp; hiking</h3>
+          <p>Forest bathing is my weekend ritual: trails, fresh air and a green view for recharging.</p>
+          <div class="gallery">
+            <a href="assets/outside/hiking-1.jpg" target="_blank" rel="noopener"><img src="assets/outside/hiking-1.jpg" alt="Resting on a rock on a misty mountain trail" loading="lazy"></a>
+            <a href="assets/outside/travel-4.jpg" target="_blank" rel="noopener"><img src="assets/outside/travel-4.jpg" alt="Alpine village with mountains and clouds" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Travel</h3>
+          <p>Exploring new countries and cultures is my passion, with 20+ countries travelled so far.</p>
+          <div class="gallery">
+            <a href="assets/outside/travel-1.jpg" target="_blank" rel="noopener"><img src="assets/outside/travel-1.jpg" alt="London telephone box and Big Ben" loading="lazy"></a>
+            <a href="assets/outside/travel-toulouse.jpg" target="_blank" rel="noopener"><img src="assets/outside/travel-toulouse.jpg" alt="Toulouse" loading="lazy"></a>
+          </div>
+        </div>
+      </div>
+      <figure class="aodai">
+        <img src="assets/ao-dai.jpg" alt="Vy Nguyen in traditional Vietnamese ao dai" onerror="this.parentElement.hidden=true">
+        <figcaption>In traditional Vietnamese ao dai</figcaption>
+      </figure>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="btns">
+        <a class="btn primary" href="mailto:vy.nguyenphucbao@gmail.com">vy.nguyenphucbao@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/phucbaovynguyen/">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Vy Nguyen</footer>
+  </div>
+</div>
+
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.side-nav a'));
+
+    function setActive(id) {
+      links.forEach(function (a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+
+    var sections = links
+      .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+
+    if (!('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+
+    sections.forEach(function (section) { observer.observe(section); });
+  })();
+</script>
+
+<script>
+  (function () {
+    var now = new Date();
+    var nowY = now.getFullYear();
+    var nowM = now.getMonth() + 1;
+
+    function parse(value) {
+      var parts = value.split('-');
+      return { y: parseInt(parts[0], 10), m: parseInt(parts[1], 10) };
+    }
+
+    function format(total) {
+      var yrs = Math.floor(total / 12);
+      var mos = total % 12;
+      var out = [];
+      if (yrs) out.push(yrs + (yrs === 1 ? ' yr' : ' yrs'));
+      if (mos || !yrs) out.push(mos + (mos === 1 ? ' mo' : ' mos'));
+      return out.join(' ');
+    }
+
+    document.querySelectorAll('.dur').forEach(function (el) {
+      var start = parse(el.dataset.start);
+      var end = el.dataset.end === 'present' ? { y: nowY, m: nowM } : parse(el.dataset.end);
+      var total = (end.y * 12 + end.m) - (start.y * 12 + start.m) + 1;
+      el.textContent = format(total);
+    });
+  })();
+</script>
+
+</body>
+</html>
